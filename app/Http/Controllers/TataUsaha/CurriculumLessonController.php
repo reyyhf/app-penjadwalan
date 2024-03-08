@@ -18,7 +18,7 @@ class CurriculumLessonController extends Controller
             ->select('curriculum_lessons.*', 'category_lessons.name as category_name')
             ->leftjoin('category_lessons', 'category_lessons.id', '=', 'curriculum_lessons.category_id')
             ->where('curriculum_lessons.deleted_at', null)->get();
-        return view('TataUsaha.CurriculumLesson.Index', compact('curriculumLessons'));
+        return view('TataUsaha.CurriculumLesson.index', compact('curriculumLessons'));
     }
 
     public function create()
