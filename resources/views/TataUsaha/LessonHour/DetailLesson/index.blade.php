@@ -64,7 +64,8 @@
                             <option value="">Pilih Pelajaran</option>
                             @foreach ($curriculumLessons as $curriculumLesson)
                                 <option value="{{ $curriculumLesson->id }}" data-weight="{{ $curriculumLesson->weight }}">
-                                    {{ $curriculumLesson->name_lesson }}
+                                    {{ $curriculumLesson->name_lesson }} 
+                                    - <b>{{ $curriculumLesson->name_employee }}</b>
                                 </option>
                             @endforeach
                         </select>
@@ -72,20 +73,6 @@
                 </div>
 
                 <hr>
-
-                <div class="form-group tanggal hidden" @error('day') has-error @enderror">
-                    <label class="control-label col-lg-2">Hari <span class="text-danger">*</span></label>
-                    <div class="col-lg-10">
-                        <select name="day" id="day"
-                            class="form-control @error('day') has-error @enderror">
-                            <option value="">Pilih Hari</option>
-                            @foreach ($days as $day)
-                                <option value="{{ $day->id }}">
-                                    {{ $day->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
                 <div class="form-group tanggal hidden" @error('teacher_id') has-error @enderror">
                     <label class="control-label col-lg-2">Pilih Pengajar</label>
                     <div class="col-lg-10">
@@ -100,6 +87,48 @@
                             </select>
                     </div>
                 </div>
+                <div class="form-group tanggal1 hidden" @error('teacher_id_1') has-error @enderror">
+                    <label class="control-label col-lg-2">Pilih Pengajar</label>
+                    <div class="col-lg-10">
+                        <select name="teacher_id_1" id="teacher_id_1"
+                            class="form-control @error('teacher_id_1') has-error @enderror">
+                                <option value="">Pilih Pengajar</option>
+                                @foreach ($teachers as $teacher)
+                                <option value="{{ $teacher->id }}">
+                                    {{ $teacher->name }}
+                                </option>
+                                @endforeach
+                            </select>
+                    </div>
+                </div>
+                <div class="form-group tanggal2 hidden" @error('teacher_id_2') has-error @enderror">
+                    <label class="control-label col-lg-2">Pilih Pengajar </label>
+                    <div class="col-lg-10">
+                        <select name="teacher_id_2" id="teacher_id_2"
+                            class="form-control @error('teacher_id_2') has-error @enderror">
+                                <option value="">Pilih Pengajar</option>
+                                @foreach ($teachers as $teacher)
+                                <option value="{{ $teacher->id }}">
+                                    {{ $teacher->name }}
+                                </option>
+                                @endforeach
+                            </select>
+                    </div>
+                </div>
+                <div class="form-group tanggal hidden" @error('day') has-error @enderror">
+                    <label class="control-label col-lg-2">Hari <span class="text-danger">*</span></label>
+                    <div class="col-lg-10">
+                        <select name="day" id="day"
+                            class="form-control @error('day') has-error @enderror">
+                            <option value="">Pilih Hari</option>
+                            @foreach ($days as $day)
+                                <option value="{{ $day->id }}">
+                                    {{ $day->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                
                 <div class="form-group tanggal hidden" @error('hour') has-error @enderror">
                     <label class="control-label col-lg-2">Jam Pelajaran Ke - </label>
                     <div class="col-lg-10">
@@ -133,20 +162,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group tanggal1 hidden" @error('teacher_id_1') has-error @enderror">
-                    <label class="control-label col-lg-2">Pilih Pengajar</label>
-                    <div class="col-lg-10">
-                        <select name="teacher_id_1" id="teacher_id_1"
-                            class="form-control @error('teacher_id_1') has-error @enderror">
-                                <option value="">Pilih Pengajar</option>
-                                @foreach ($teachers as $teacher)
-                                <option value="{{ $teacher->id }}">
-                                    {{ $teacher->name }}
-                                </option>
-                                @endforeach
-                            </select>
-                    </div>
-                </div>
+                
                 <div class="form-group tanggal1 hidden" @error('hour1') has-error @enderror">
                     <label class="control-label col-lg-2">Jam Pelajaran Ke - </label>
                     <div class="col-lg-5">
@@ -182,20 +198,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group tanggal2 hidden" @error('teacher_id_2') has-error @enderror">
-                    <label class="control-label col-lg-2">Pilih Pengajar </label>
-                    <div class="col-lg-10">
-                        <select name="teacher_id_2" id="teacher_id_2"
-                            class="form-control @error('teacher_id_2') has-error @enderror">
-                                <option value="">Pilih Pengajar</option>
-                                @foreach ($teachers as $teacher)
-                                <option value="{{ $teacher->id }}">
-                                    {{ $teacher->name }}
-                                </option>
-                                @endforeach
-                            </select>
-                    </div>
-                </div>
+                
                 <div class="form-group tanggal2 hidden" @error('hour3') has-error @enderror">
                     <label class="control-label col-lg-2">Jam Pelajaran Ke - </label>
                     <div class="col-lg-5">
@@ -259,9 +262,27 @@
 
 <script>
 $(document).ready(function () {
+    $("#teacher_id").change(function () {
+        // const teacher_id =$('#teacher_id option:selected')
+        console.log("emp id = ",$(this).val());
+
+    })
+    $("#teacher_id_1").change(function () {
+        // const teacher_id =$('#teacher_id option:selected')
+        console.log("emp id = ",$(this).val());
+
+    })
+    $("#teacher_id_2").change(function () {
+        // const teacher_id =$('#teacher_id option:selected')
+        console.log("emp id = ",$(this).val());
+
+    })
     $("#curriculum_id").change(function () {
         const weight = $('#curriculum_id option:selected').data('weight');
         $('#weight').val(weight);
+        console.log("id = ",$(this).val());
+
+        
         if (weight == 1) {
             $(".tanggal").removeClass("hidden");
             $(".tanggal1").addClass("hidden");
@@ -296,6 +317,7 @@ $(document).ready(function () {
         total = parseInt(jumlah) + 1;
         $('#hour4').val(total);
     })
+    
 });
 </script>
 @endsection

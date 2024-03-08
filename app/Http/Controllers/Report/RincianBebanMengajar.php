@@ -44,7 +44,7 @@ class RincianBebanMengajar extends Controller
                         ->where('days.name', $day)
                         ->orderBy('detail_lessons.day', 'asc')
                         ->orderBy('detail_lessons.hour', 'asc')->get();
-
+                        // dd($teacher,$lessonHour,$day,$detailLessons);
                     if (count($detailLessons)) {
                         $schedules[] = $detailLessons;
                     }
@@ -95,6 +95,6 @@ class RincianBebanMengajar extends Controller
 
         $name_file_pdf = 'laporan-' . Str::slug($title);
         return $pdf->stream($name_file_pdf . '.pdf')
-                ->header('Content-Type','application/pdf');
+                ->header('Content-Type','application/pdf');;
     }
 }

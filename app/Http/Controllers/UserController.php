@@ -73,13 +73,14 @@ class UserController extends Controller
         $positions = Position::all('id', 'name');
         // $lessons = CurriculumLesson::all();
         $lessons= CurriculumLesson::with('Categorylesson')->get();
+        // dd($lessons);
         $data = TeacherLesson::where('employee_id',$employee->id)->get();
         // dd($data);
 
         foreach ($data as $item) {
             array_push($teacherLesson,$item->curriculum_id);
         }
-        // dd($teacherLesson);
+        // dd($data);
         
         return view('user.edit')->with(compact(['employee','user','positions', 'lessons','teacherLesson']));
     }
@@ -95,7 +96,7 @@ class UserController extends Controller
             "xii_class" => ($request->get('status') == 1 || $request->get('status') == 2) ? 0: (($request->get('xii') != 1) ? 0 : $request->get('xii'))
         ]);
         User::where("employee_id",$id)->update(['position_id' => $request->get('status')]);
-        TeacherLesson::where("employee_id",$id)->update(["curriculum_id" => $request->get('lesson')]);
+        TeacherLesson::where("employee_id",$id)->update(["curriculum_id" => intval($request->get('lesson'))]);
         TeacherLesson::where("employee_id",$id)->delete();
         if ($request->get('status') == 3 || $request->get('status') == 4) {
             foreach ($request->get('lesson') as $lesson) {

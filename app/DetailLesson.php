@@ -10,6 +10,7 @@ class DetailLesson extends Model
     protected $guarded = array();
     protected $fillable = [
         'lesson_hour_id',
+        'employee_id',
         'curriculum_id',
         'day',
         'hour'
@@ -22,7 +23,7 @@ class DetailLesson extends Model
 
     public function curriculumLesson()
     {
-        return $this->belongsTo(CurriculumLesson::class, 'id');
+        return $this->belongsTo(CurriculumLesson::class, 'curriculum_id');
     }
 
     public function employee()

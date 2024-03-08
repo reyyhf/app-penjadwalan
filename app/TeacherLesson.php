@@ -7,17 +7,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class TeacherLesson extends Model
 {
-    use SoftDeletes;
+    // use SoftDeletes;
     // JANGAN LUPA GANTI NAMA TABEL
-    protected $table = 'guru_matpel'; 
+    protected $table = 'teacher_lessons'; 
     protected $primaryKey = [
-        'id',
+        // 'id',
         'employee_id',
         'curriculum_id'
     ];
     public $incrementing = false;
     protected $fillable = [ 
-        'id',       
+        // 'id',       
         'employee_id',
         'curriculum_id'
     ];

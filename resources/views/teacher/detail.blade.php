@@ -52,9 +52,9 @@
                             <td>:</td>
                             <td>
                                 <ul>
-                                    @foreach ($teacher->detailLessons as $detailLesson)
-                                    @if (!empty($detailLesson->curriculumLesson))
-                                        <li>{{ $detailLesson->curriculumLesson->name_lesson }}</li>
+                                    @foreach ($teacher->teacherlessons as $teacherlesson)
+                                    @if (!empty($teacherlesson->curriculumLesson))
+                                        <li>{{ $teacherlesson->curriculumLesson->name_lesson }}</li>
                                     @endif
                                     @endforeach
                                 </ul>

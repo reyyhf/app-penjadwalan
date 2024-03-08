@@ -66,7 +66,8 @@
                                     <select class="multiselect-filtering" name="lesson[]" multiple="multiple" required>
                                         @foreach ($lessons as $lesson)
                                         {{-- <option value="{{ $lesson->id }}">{{ $lesson->name_lesson." - ".$lesson->categoryLesson['name'] }}</option> --}}
-                                        <option value="{{ $lesson->id }}" class="opt-lesson" @if(in_array($lesson->id,$teacherLesson)) selected @endif >{{ $lesson->name_lesson." - ".$lesson->categoryLesson->name }}</option>
+                                        <option class="opt-lesson" @if(in_array($lesson->id,$teacherLesson)) selected @endif value="{{ $lesson->id }}">{{ $lesson->name_lesson." - ".$lesson->categoryLesson->name }}</option>
+                                        {{-- <option value="{{ $lesson->id }}" class="opt-lesson" @if(in_array($lesson->id,$teacherLesson)) selected @endif >{{ $lesson->name_lesson." - ".$lesson->categoryLesson->name }}</option> --}}
                                         @endforeach
                                     </select>
                                 </div>

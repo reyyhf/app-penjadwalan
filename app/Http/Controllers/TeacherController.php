@@ -20,9 +20,15 @@ class TeacherController extends Controller
     {
         // $teacher = Employee::find($id);
         // $lessons = TeacherLesson::where('employee_id',$teacher->id)->get();
-        $teacher = Employee::with(['detailLessons' => function($query) {
+        $teacher = Employee::with(['teacherlessons' => function($query) {
             $query->with(['curriculumLesson']);
         }])->find($id);
+        // dd($teacher);
+        // $teacher = Employee::leftJoin('teacher_lessons', 'employees.id', '=', 'teacher_lessons.employee_id')
+        // ->leftJoin('curriculum_lessons', 'curriculum_lessons.id', '=', 'teacher_lessons.curriculum_id')
+        // ->select('employees.*', 'teacher_lessons.*', 'curriculum_lessons.*')
+        // ->find($id);
+
 
         return view('teacher.detail')->with(compact(['teacher']));
     }
